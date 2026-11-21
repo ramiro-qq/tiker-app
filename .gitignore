@@ -24,6 +24,7 @@ logs/
 *.backup
 *.local
 
+# Public, reviewed README assets belong in docs/images/ and are versioned.
 # Editor, agent sessions and local design/QA evidence
 .vscode/*
 !.vscode/extensions.json
