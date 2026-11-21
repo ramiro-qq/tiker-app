@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "preferences": {
+    "language": "zh-CN",
+    "theme": "system",
+    "launchPage": "explore",
+    "fontSize": "medium"
+  },
+  "shortcuts": {
+    "search": "k",
+    "save": "s"
+  }
+}

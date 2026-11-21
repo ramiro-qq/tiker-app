@@ -1,0 +1,17 @@
+.sidebar.app-navigation{flex:0 0 var(--navigation-width);width:var(--navigation-width);padding:56px 14px 20px;align-items:stretch}
+.window-top-drag-region,.window-controls-drag-region{display:none;background:transparent}
+:root[data-window-chrome=macos-overlay] .window-top-drag-region{display:block;position:fixed;inset:0 0 auto;height:16px;z-index:70}
+:root[data-window-chrome=macos-overlay] .window-controls-drag-region{display:block;position:absolute;inset:0 0 auto;height:36px}
+.sidebar.app-navigation .nav-brand{position:relative;flex-shrink:0;height:36px;display:flex;align-items:center;gap:12px;cursor:default}
+.nav-brand .brand-mark{width:32px;height:32px;object-fit:contain}
+.nav-home{display:flex;width:44px;height:36px;justify-content:center;align-items:center;gap:12px;border-radius:6px;background:transparent;padding:0}.nav-home:focus-visible{background:var(--accent-soft)}
+.nav-brand strong{display:none;font-size:16px;font-weight:600;line-height:1.45;white-space:nowrap}
+.sidebar.app-navigation nav{margin-top:36px;gap:8px}
+.sidebar.app-navigation .nav-item{width:44px;height:44px;display:flex;align-items:center;justify-content:center;gap:12px;padding:0;border-radius:12px;color:var(--ink-2);font-size:var(--font-ui)}
+.sidebar.app-navigation .nav-item svg{flex-shrink:0;color:inherit}
+.sidebar.app-navigation .nav-item.active{background:var(--nav-selected);color:var(--accent-ink);font-weight:600}
+.sidebar.app-navigation .nav-item:hover,.sidebar.app-navigation .nav-item:focus-visible{background:var(--accent-soft);color:var(--accent-ink)}
+.sidebar.app-navigation .nav-item.active:before{display:none}
+.sidebar.app-navigation nav .nav-item:first-child{margin-bottom:0}
+.nav-label{display:none}.nav-bottom{margin-top:auto;display:flex;flex-direction:column;gap:8px;padding-top:24px}
+@media(max-height:660px){.sidebar.app-navigation{padding-top:40px}.sidebar.app-navigation nav{margin-top:16px}.nav-bottom{gap:4px;padding-top:8px}.sidebar.app-navigation .nav-item{height:38px}}

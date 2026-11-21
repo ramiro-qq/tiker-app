@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "app": {
+    "language": "zh-CN",
+    "theme": "system",
+    "launchPage": "search",
+    "fontSize": "medium"
+  },
+  "workspace": {
+    "currentPath": null,
+    "recentPaths": []
+  },
+  "window": {
+    "width": 1180,
+    "height": 760,
+    "maximized": false
+  },
+  "shortcuts": {
+    "search": "k",
+    "toggleSidebar": "b",
+    "save": "s"
+  }
+}

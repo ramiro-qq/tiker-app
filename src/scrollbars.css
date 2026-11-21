@@ -1,0 +1,45 @@
+/* Shared by page panels, nested lists, textareas and modal content. */
+:root {
+  --scrollbar-thumb: #e3e3e3;
+  --scrollbar-thumb-hover: #d1d1d1;
+}
+
+:root[data-theme="dark"] {
+  --scrollbar-thumb: #454950;
+  --scrollbar-thumb-hover: #595e67;
+}
+
+/* Use explicit dimensions in Chromium and the desktop WebKit webview.
+   Non-auto standard properties would override these pseudo-elements. */
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track,
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: var(--scrollbar-thumb);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+*::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Firefox uses the standard scrollbar API. */
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+  }
+}

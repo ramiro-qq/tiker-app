@@ -1,0 +1,73 @@
+name: Build release candidates
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ['v*']
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            target: aarch64-apple-darwin
+          - os: macos-latest
+            target: x86_64-apple-darwin
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+          - os: ubuntu-22.04
+            target: x86_64-unknown-linux-gnu
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - name: Install Linux dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev librsvg2-dev libayatana-appindicator3-dev patchelf libdbus-1-dev pkg-config
+      - run: npm ci
+      - run: npm run check:version
+      - run: npm run check:repository
+      - run: npm run check:focus-styles
+      - run: npm run test:extension
+      - run: npm run test:github
+      - name: Rust library tests (native host)
+        run: cargo test --locked --manifest-path src-tauri/Cargo.toml --lib
+      - name: Build candidate
+        run: npm run tauri build -- --target ${{ matrix.target }}
+        env:
+          # Public OAuth identifier; no Client Secret is required.
+          GITHUB_CLIENT_ID: ${{ vars.GITHUB_CLIENT_ID }}
+      - name: Hash and collect candidates
+        shell: python
+        run: |
+          import hashlib, pathlib, shutil
+          root = pathlib.Path('src-tauri/target/${{ matrix.target }}/release/bundle')
+          dest = pathlib.Path('release/${{ matrix.target }}')
+          dest.mkdir(parents=True, exist_ok=True)
+          for p in root.rglob('*'):
+              if p.is_file() and p.suffix.lower() in {'.dmg', '.msi', '.exe', '.deb', '.rpm', '.appimage'}:
+                  shutil.copy2(p, dest / p.name)
+          shutil.copy2('public/downloads/tiker-clipper.zip', dest / 'tiker-clipper.zip')
+          assets = sorted(p for p in dest.iterdir() if p.is_file())
+          if len(assets) < 2:
+              raise RuntimeError('No desktop installer produced')
+          (dest / 'SHA256SUMS.txt').write_text(''.join(f'{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.name}\n' for p in assets))
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tiker-${{ matrix.target }}
+          path: release/${{ matrix.target }}/
+          if-no-files-found: error

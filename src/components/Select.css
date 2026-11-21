@@ -1,0 +1,13 @@
+.ui-select{position:relative;min-width:0;color:var(--ink);font-size:var(--font-ui)}
+.ui-select-trigger{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;height:36px;padding:0 12px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);font:inherit;cursor:pointer;text-align:left}
+.ui-select-trigger>span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ui-select-trigger>svg{flex-shrink:0;color:var(--muted)}
+.ui-select-trigger:hover,.ui-select-trigger:focus-visible,.ui-select-trigger[aria-expanded=true]{background:var(--blue-soft);color:var(--blue)}
+.ui-select-options{position:absolute;z-index:20;top:calc(100% + 4px);right:0;width:max-content;min-width:100%;max-width:min(320px,calc(100vw - 32px));max-height:240px;overflow:auto;padding:4px;border:1px solid var(--line);border-radius:7px;background:var(--surface);box-shadow:0 6px 16px #172b4d1a}
+.ui-select-option{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:36px;padding:8px 10px;border-radius:4px;cursor:pointer}
+.ui-select-option>span{min-width:0;overflow-wrap:anywhere}
+.ui-select-option>svg{flex-shrink:0}
+.ui-select-option[aria-selected=true]{color:var(--blue)}
+.ui-select-option.is-active{background:var(--blue-soft);color:var(--blue)}
+.ui-select-check{display:grid;place-items:center;flex-shrink:0;width:16px;height:16px;border:1px solid var(--line);border-radius:3px}
+.ui-select-option[aria-selected=true] .ui-select-check{background:var(--action-blue);border-color:var(--action-blue);color:#fff}

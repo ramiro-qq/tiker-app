@@ -1,0 +1,37 @@
+/* Collection rows use transient hover/keyboard highlighting; descriptions stay in tooltips. */
+.clips-tree-browser{container-type:inline-size;display:flex;flex-direction:column;gap:16px;min-width:0;min-height:0;flex:1}
+.clips-tree-toolbar{display:flex;align-items:center;gap:16px;min-height:28px;flex-shrink:0;color:var(--ink-2);font-size:12px}
+.clips-tree-toolbar button{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:28px;padding:0 8px;border:0;border-radius:4px;background:transparent;color:var(--ink-2);font-size:12px;white-space:nowrap}
+.clips-tree-toolbar button:hover{background:var(--canvas)}
+.clips-tree{display:flex;flex-direction:column;gap:16px;width:100%;min-width:0;min-height:0;flex:1;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
+.clips-category{min-width:0;flex-shrink:0}
+.clips-group{display:flex;align-items:center;gap:8px;height:44px;padding:0 12px;border-radius:6px;background:transparent}
+.clips-group-toggle{display:flex;align-items:center;gap:8px;flex:1;min-width:0;height:100%;padding:0;border:0;border-radius:4px;background:transparent;text-align:left;color:var(--ink)}
+.clips-group-toggle svg{flex-shrink:0;color:var(--ink);stroke-width:1.6}
+.clips-disclosure{display:flex}.clips-disclosure svg{color:var(--ink-3)}
+.clips-group-toggle strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:16px;font-weight:600}
+.clips-count{flex-shrink:0;font-size:12px;color:var(--ink-2)}
+.clips-category.is-nested>.clips-group{height:40px;padding:0 16px;border-radius:4px}
+.clips-category.is-nested>.clips-group strong{color:var(--ink);font-size:14px;font-weight:500}
+.clips-category.is-nested>.clips-group .clips-count{font-size:13px;color:var(--ink-3)}
+.clips-branches{display:flex;flex-direction:column;gap:2px;margin:4px 0 0 36px;padding-left:23px;border-left:1px solid var(--border)}
+.clips-leaf{display:flex;align-items:center;gap:12px;position:relative;min-width:0;height:44px;padding:0 16px;border-radius:4px;color:var(--ink)}
+.clips-leaf-open{display:flex;flex-direction:column;justify-content:center;gap:4px;position:relative;flex:0 1 auto;min-width:0;max-width:100%;height:100%;padding:0;border:0;background:transparent;text-align:left;color:inherit}
+.clips-leaf-title{display:block;width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;font-weight:400;line-height:22px}
+.clips-leaf-tags{display:flex;align-items:center;gap:8px;max-width:45%;min-width:0;flex:0 1 auto}
+.clips-leaf-tags .clips-tag{min-width:0;padding:0 8px;border-radius:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.clips-tag-count{display:none;flex-shrink:0;color:var(--muted);font-size:12px}
+.clips-row-actions{display:flex;gap:4px;flex-shrink:0;width:80px;margin-left:auto}.clips-row-actions .clips-icon,.clips-group>.clips-icon{width:24px;height:24px;color:var(--ink-3)}
+.clips-row-actions{visibility:hidden;pointer-events:none}.clips-row-action{display:none}
+.clips-leaf:hover .clips-row-actions,.clips-leaf:focus-within .clips-row-actions{visibility:visible;pointer-events:auto}
+.clips-group:hover .clips-row-action,.clips-category:focus>.clips-group .clips-row-action,.clips-group:focus-within .clips-row-action{display:flex}
+.clips-summary-tooltip{display:none;position:absolute;z-index:5;left:0;top:calc(100% + 8px);width:max-content;max-width:min(368px,60vw);padding:14px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--muted);box-shadow:0 6px 20px #172b4d1f;font-size:var(--font-description);white-space:normal;pointer-events:none}
+.clips-leaf-open:hover .clips-summary-tooltip,.clips-leaf:focus-visible .clips-summary-tooltip,.clips-leaf-open:focus-visible .clips-summary-tooltip{display:block}
+.clips-leaf:hover,.clips-leaf:focus-visible,.clips-leaf:has(button:focus-visible){background:var(--accent-weak)}
+.clips-group:hover,.clips-group:focus-within,.clips-category:focus-visible>.clips-group{background:var(--bg);color:var(--ink)}
+@container(max-width:720px){.clips-leaf-tags{display:none}.clips-tag-count{display:inline}.clips-branches{margin-left:24px;padding-left:23px}}
+@container(max-width:400px){.clips-tree-toolbar{gap:4px;flex-wrap:wrap}.clips-tree-toolbar>.clips-grow{display:none}.clips-tree-toolbar>span{flex-basis:100%}.clips-tree-toolbar button{padding:0 6px}.clips-branches{margin-left:12px;padding-left:11px}.clips-leaf{padding-right:8px;padding-left:8px;gap:6px}}
+@media(hover:none){.clips-row-actions{visibility:visible;pointer-events:auto}.clips-row-action{display:flex}}
+
+
+.clips-leaf:hover .clips-leaf-title,.clips-leaf:focus-visible .clips-leaf-title{color:var(--accent-ink)}

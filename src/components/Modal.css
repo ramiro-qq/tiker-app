@@ -1,0 +1,2 @@
+/* Shared dialog foundation from Pencil 01.06. */
+.app-dialog{padding:var(--dialog-padding);border:1px solid var(--line);border-radius:var(--dialog-radius);background:var(--surface);color:var(--ink);max-width:calc(100vw - 32px);max-height:calc(100dvh - 48px);overflow:auto;box-shadow:0 12px 40px #172b4d1f}.app-dialog::backdrop{background:var(--dialog-mask)}.app-dialog>header{display:flex;align-items:center;justify-content:space-between;gap:var(--dialog-gap);margin-bottom:var(--dialog-gap)}.app-dialog h2{font-size:var(--font-dialog-title);font-weight:600}

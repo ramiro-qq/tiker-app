@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "autoSyncDelaySeconds": 4,
+  "selectedConnectionId": null,
+  "connections": [],
+  "legacyCredentialPending": false
+}
